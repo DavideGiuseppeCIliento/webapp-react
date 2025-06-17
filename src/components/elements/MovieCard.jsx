@@ -9,7 +9,7 @@ export default function MovieCard({
   genre,
 }) {
   return (
-    <Link to={`/movies/${id}`} className="text-decoration-none text-dark">
+    <Link to={`/movie/${id}`} className="text-decoration-none text-dark">
       <div className="card h-100 mb-0" style={{ maxWidth: "540px" }}>
         <div className="row g-0">
           <div className="col-md-5">
