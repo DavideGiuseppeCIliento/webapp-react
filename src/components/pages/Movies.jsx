@@ -1,1 +1,3 @@
-export default function Movies() {}
+export default function Movies() {
+  return "Movies";
+}
