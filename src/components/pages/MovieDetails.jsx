@@ -31,8 +31,7 @@ export default function MovieDetalis() {
           <img
             src={movie.image}
             alt={movie.title}
-            className="img-fluid rounded shadow"
-            style={{ maxHeight: "500px", objectFit: "cover" }}
+            className="img-fluid rounded shadow image-details"
           />
         </div>
 

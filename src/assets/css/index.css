@@ -24,3 +24,8 @@ body {
   flex-direction: column;
   flex-grow: 1;
 }
+
+.image-details {
+  max-height: "500px";
+  object-fit: "cover";
+}
