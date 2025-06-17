@@ -26,6 +26,5 @@ body {
 }
 
 .image-details {
-  max-height: "500px";
-  object-fit: "cover";
+  width: 60%;
 }
