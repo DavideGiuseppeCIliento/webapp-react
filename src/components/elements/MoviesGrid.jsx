@@ -33,6 +33,7 @@ export default function MoviesGrid() {
           return (
             <div className="col-12 col-md-4 " key={movie.id}>
               <MovieCard
+                id={movie.id}
                 image={movie.image}
                 title={movie.title}
                 abstract={movie.abstract}
