@@ -4,27 +4,42 @@ import { useEffect, useState } from "react";
 // # IMPORT ROUTER
 import { useParams } from "react-router-dom";
 
+// # IMPORT CONTEXT
+import { useLoading } from "../../context/LoadingContext";
+
 // # IMPORT AXIOS
 import axios from "axios";
 
 // # IMPORT COMPONENTS
 import MovieCard from "./MovieCard";
+import Loader from "./Loader";
 
 export default function MoviesGrid() {
   const [movies, setMovies] = useState([]);
+  const { loading, setLoading } = useLoading();
 
   function APIRequest() {
-    axios.get("http://localhost:3000/movies").then((res) => {
-      console.log(res);
-      const data = res.data;
-      console.log(data);
-      setMovies(data);
-    });
+    setLoading(true);
+
+    axios
+      .get("http://localhost:3000/movies")
+      .then((res) => {
+        console.log(res);
+        const data = res.data;
+        console.log(data);
+        setMovies(data);
+      })
+      .catch((err) => console.error(err))
+      .finally(() => {
+        setLoading(false);
+      });
   }
 
   useEffect(() => {
     APIRequest();
   }, []);
+
+  if (loading) return <Loader />;
 
   return (
     <div className="container p-5 ">

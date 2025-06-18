@@ -1,6 +1,9 @@
 // # IMPORT HOOK
 import { useEffect, useState } from "react";
 
+// # IMPORT CONTEXT
+import { useLoading } from "../../context/LoadingContext";
+
 // # IMPORT ROUTER
 import { useParams } from "react-router-dom";
 
@@ -16,23 +19,31 @@ export default function MovieDetalis() {
   const { id } = useParams();
   const [movie, setMovie] = useState([]);
   const [reviews, setReviews] = useState([]);
+  const { loading, setLoading } = useLoading();
 
   function APIRequest() {
-    axios.get(`http://localhost:3000/movies/${id}`).then((res) => {
-      const data = res.data;
-      console.log(data);
+    setLoading(true);
+    axios
+      .get(`http://localhost:3000/movies/${id}`)
+      .then((res) => {
+        const data = res.data;
+        console.log(data);
 
-      setMovie(data);
-      setReviews(data.reviews);
-      console.log(data.reviews);
-    });
+        setMovie(data);
+        setReviews(data.reviews);
+        console.log(data.reviews);
+      })
+      .catch((err) => console.error(err))
+      .finally(() => {
+        setLoading(false);
+      });
   }
 
   useEffect(() => {
     APIRequest();
   }, []);
 
-  if (!movie?.title) return <Loader />;
+  if (loading) return <Loader />;
 
   return (
     <>

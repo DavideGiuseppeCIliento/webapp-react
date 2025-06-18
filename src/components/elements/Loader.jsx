@@ -3,8 +3,8 @@ import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 
 export default function Loader() {
   return (
-    <div>
-      <FontAwesomeIcon icon={faSpinner} spinPulse />
+    <div className="d-flex justify-content-center align-items-center p-5">
+      <FontAwesomeIcon icon={faSpinner} spin size="2x" className="text-light" />
     </div>
   );
 }

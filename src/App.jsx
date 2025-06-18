@@ -1,6 +1,9 @@
 // # IMPORT ROUTER
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+// # IMPORT CONTEXT
+import { LoadingProvider } from "./context/LoadingContext";
+
 // # IMPORT  LAYOUT
 import DefaultLayout from "./layouts/DefaultLayout";
 
@@ -16,16 +19,18 @@ import pageNav from "./data/pageNav";
 export default function App() {
   return (
     <>
-      <BrowserRouter>
-        <Routes>
-          <Route element={<DefaultLayout />}>
-            <Route path={pageNav.HOME} element={<HomePage />} />
-            <Route path={pageNav.ABOUT} element={<AboutPage />} />
-            <Route path={pageNav.MOVIES} element={<Movies />} />
-            <Route path={pageNav.MOVIE_DETAILS} element={<MovieDetalis />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
+      <LoadingProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route element={<DefaultLayout />}>
+              <Route path={pageNav.HOME} element={<HomePage />} />
+              <Route path={pageNav.ABOUT} element={<AboutPage />} />
+              <Route path={pageNav.MOVIES} element={<Movies />} />
+              <Route path={pageNav.MOVIE_DETAILS} element={<MovieDetalis />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </LoadingProvider>
     </>
   );
 }

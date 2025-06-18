@@ -3,7 +3,7 @@ import { createContext, useState, useContext } from "react";
 
 const LoadingContext = createContext();
 
-export function LoadingProvider({ children }) {
+function LoadingProvider({ children }) {
   const [loading, setLoading] = useState(false);
 
   return (
@@ -13,4 +13,9 @@ export function LoadingProvider({ children }) {
   );
 }
 
-export const useLoading = () => useContext(LoadingContext);
+function useLoading() {
+  const context = useContext(LoadingContext);
+  return context;
+}
+
+export { LoadingProvider, useLoading };
