@@ -9,6 +9,8 @@ import axios from "axios";
 
 // # IMPORT COMPONENTS
 import ReviewCard from "../elements/ReviewCard";
+import RatingStars from "../elements/RatingStars";
+import Loader from "../elements/Loader";
 
 export default function MovieDetalis() {
   const { id } = useParams();
@@ -30,6 +32,8 @@ export default function MovieDetalis() {
     APIRequest();
   }, []);
 
+  if (!movie?.title) return <Loader />;
+
   return (
     <>
       <div className="container py-5">
@@ -46,20 +50,18 @@ export default function MovieDetalis() {
           {/* Colonna testo */}
           <div className="col-md-6 text-light">
             <h2 className="fw-bold">{movie.title}</h2>
+            <p>
+              {" "}
+              <small>{movie.release_year}</small>
+            </p>
             <p className="mb-1 text-uppercase text-secondary">
               Directed by{" "}
               <span className="text-white fw-semibold">{movie.director}</span>
             </p>
-            <p className="lead">{movie.abstract}</p>
-
-            <div className="d-flex gap-3 mt-4">
-              <span className="badge bg-primary fs-6">
-                Year: {movie.release_year}
-              </span>
-              <span className="badge bg-warning text-dark fs-6">
-                Vote: {parseInt(movie.verage_vote) ?? "N/A"}
-              </span>
-            </div>
+            <p>{movie.abstract}</p>
+            <span>
+              {<RatingStars vote={parseInt(movie.verage_vote)} /> ?? "N/A"}
+            </span>
           </div>
         </div>
       </div>
