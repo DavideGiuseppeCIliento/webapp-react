@@ -100,7 +100,7 @@ export default function MovieDetalis() {
       <div className="container p-5">
         <div className="row text-white">
           <h3 className="pb-4">Aggiungi una Recensione</h3>
-          <ReviewForm />
+          <ReviewForm reloadReviews={APIRequest} />
         </div>
       </div>
     </>
